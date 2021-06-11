@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Final Project</title>
+</head>
+<body>
+<h1>ISE 311 Information Technologies Term Project</h1>
+
+<div id="content_table">
+    <p class="toc_title">Contents</p>
+    <ul class="toc_list">
+        <li>1. <a href="#1">Introduction</a></li>
+        <li>2. <a href="#2">Tables & Diagrams</a></li>
+        <ul>
+            <li>a. <a href="#2a">The Entity-Relationship Diagram</a></li>
+            <li>b. <a href="#2b">The Tables</a></li>
+            <li>c. <a href="#2c">The tables for relations</a></li>
+            <li>d. <a href="#2d">Queries</a></li>
+        </ul>
+    </ul>
+</div>
+
+
+<h2 id="1">1. Introduction</h2>
+<p>This Project is here to solve a problem faced by many dealerships that are still using Microsoft Excel instead of Relation Database (RDB). With the power of RDB complex queries can be performed within seconds resulting in better workflow for any business. RDB is the most popular database in the world. </p>
+<p>Adding one car to the inventory may sound easy but it can get quite complex. Each car has its own model, year, color, price, date of purchase and chassis number. Now the car also </p>
+<p>Many dealerships are having to spend countless hours updating records of their daily activities like adding new cars and new customers. Each car has many different features, and each car may belong to different dealership. It is also essential to track which employee sold that particular car to which customer and which dealership the employee belonged to. </p>
+Here are few scenarios which can show the effectiveness of having the RDB. 
+<ul>
+    <li>A customer asks to show a list of all Renault models by order. </li>
+    <li>A customer requests to see which employee sold them the car. </li>
+    <li>The employer wants to know their top sales person. </li>
+    <li>Finding the origin of a car brand.</li>
+    <li>Finding the name of all Renault models by order. </li>
+</ul>
+
+<h2 id="2">2. Tables & Diagrams</h2>
+<h3 id="2a">2a. The Entity-Relationship Diagram</h3>
+<img src="erd.png" alt="" width="100%" height="auto">
+
+<h3 id="2b">2b. The Tables</h3>
+
+<div class="two-col">
+    <div>
+        <h4>Brand</h4>
+        <table>
+            <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>origin_of_origin</th>
+            </tr>
+            <tr>
+            <td>1</td>
+            <td>RENAULT</td>
+            <td>France</td>
+            </tr>
+            <tr>
+            <td>2</td>
+            <td>FIAT</td>
+            <td>Italy</td>
+            </tr>
+            <tr>
+            <td>3</td>
+            <td>Jeep</td>
+            <td>US</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h4>dealer</h4>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>office_address</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>IMEX MOTORS</td>
+                <td>1770 Richarh St Turkey</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Capital Dodge Chrysler</td>
+                <td>2500 Palladium Turkey</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Southbank Dodge Chrysler</td>
+                <td>1255 Hamza Rd Turkey</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h4>dealer_brand_map</h4>
+        <table>
+            <tr>
+                <th>brand_id</th>
+                <th>dealer_id</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <h4>model</h4>
+        <table>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>brand_id</th>
+                <th>transmission_type</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>LATITUDE</td>
+                <td>1</td>
+                <td>Automatic</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>MEGANE</td>
+                <td>1</td>
+                <td>Manual</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>CLIO</td>
+                <td>1</td>
+                <td>Automatic</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>FLUENCE</td>
+                <td>1</td>
+                <td>MANUAL</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>500X</td>
+                <td>2</td>
+                <td>Automatic</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>EGEA SEDAN</td>
+                <td>1</td>
+                <td>Automatic</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>COMPASS</td>
+                <td>3</td>
+                <td>Automatic</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<h4>employee</h4>
+<table>
+    <tr>
+        <th>id</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>contact_no</th>
+        <th>dealer_id</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>MEHMET</td>
+        <td>BULUT</td>
+        <td>mehmet@gmail.com</td>
+        <td>+1 613-731-1970</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>NURAN</td>
+        <td>GENC</td>
+        <td>NURAN@gmail.com</td>
+        <td>+1 613-731-1272</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>James</td>
+        <td>Anderson</td>
+        <td>james@hotmail.com</td>
+        <td>+1 613-791-1278</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Glenn</td>
+        <td>Johnson</td>
+        <td>glenn@live.com</td>
+        <td>+1 613-745-5654</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Andrea</td>
+        <td>Rogers</td>
+        <td>andrea@gmail.com</td>
+        <td>+1 613-765-9898</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Steve</td>
+        <td>Stark</td>
+        <td>steve@gmail.com</td>
+        <td>+1 613-345-7777</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Benedict</td>
+        <td>Potts</td>
+        <td>benedict@hotmail.com</td>
+        <td>+1 613-876-3444</td>
+        <td>3</td>
+    </tr>
+</table>
+
+<h4>Car</h4>
+<table>
+    <tr>
+      <th>chasis_number</th>
+      <th>model_id</th>
+      <th>year</th>
+      <th>color</th>
+      <th>price</th>
+      <th>owner_id</th>
+      <th>date_of_purchase</th>
+      <th>employee_id</th>
+    </tr>
+    <tr>
+        <td>NM435600006D71235</td>
+        <td>6</td>
+        <td>2019</td>
+        <td>BLACK</td>
+        <td>78000.00</td>
+        <td>3</td>
+        <td>2020-01-01</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>NM435600006D71232</td>
+        <td>6</td>
+        <td>2019</td>
+        <td>WHITE</td>
+        <td>78000.00</td>
+        <td>8</td>
+        <td>2019-08-27</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>NM435600006D71235</td>
+        <td>2</td>
+        <td>2019</td>
+        <td>BLACK</td>
+        <td>81000.00</td>
+        <td>6</td>
+        <td>2020-03-25</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>NM435600006D71236</td>
+        <td>2</td>
+        <td>2019</td>
+        <td>BLACK</td>
+        <td>81000.00</td>
+        <td>4</td>
+        <td>2020-04-22</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>NM435600006E34584</td>
+        <td>6</td>
+        <td>2019</td>
+        <td>WHITE</td>
+        <td>78000.00</td>
+        <td>5</td>
+        <td>2019-08-18</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>VF1LT1R06UC243617</td>
+        <td>1</td>
+        <td>2017</td>
+        <td>OXFORD BLUE</td>
+        <td>90000.00</td>
+        <td>9</td>
+        <td>2018-10-23</td>
+        <td>3</td>
+    </tr>
+    <tr>
+        <td>ZACNJCB10LPR04579</td>
+        <td>7</td>
+        <td>2020</td>
+        <td>GREEN</td>
+        <td>93000.00</td>
+        <td>6</td>
+        <td>2020-02-27</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>ZFA3340000P492826</td>
+        <td>2</td>
+        <td>2017</td>
+        <td>WHITE</td>
+        <td>75000.00</td>
+        <td>7</td>
+        <td>2018-08-13</td>
+        <td>1</td>
+    </tr>
+</table>
+
+<h4>Customer</h4>
+<table>
+    <tr>
+        <th>id</th>
+        <th>first_name</th>
+        <th>last_name</th>
+        <th>dob</th>
+        <th>contact_no</th>
+        <th>email</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Stanley</td>
+        <td>Howard</td>
+        <td>1988-10-18</td>
+        <td>+1 613-211-8778</td>
+        <td>stanley@gmail.com</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Jenny</td>
+        <td>Johnson</td>
+        <td>1998-10-12</td>
+        <td>+1 613-211-8123</td>
+        <td>jenny@gmail.com</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Robert</td>
+        <td>Downey</td>
+        <td>1992-09-18</td>
+        <td>+1 613-898-2178</td>
+        <td>robert@gmail.com</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Meredith</td>
+        <td>Potts</td>
+        <td>1989-10-16</td>
+        <td>+1 613-211-7987</td>
+        <td>meredith@gmail.com</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Alaric</td>
+        <td>Saltzman</td>
+        <td>1991-11-13</td>
+        <td>+1 613-768-2162</td>
+        <td>alaric@gmail.com</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Bonnie</td>
+        <td>Bennet</td>
+        <td>1995-12-17</td>
+        <td>+1 613-768-6878</td>
+        <td>bonnie@gmail.com</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>Elena</td>
+        <td>Gilbert</td>
+        <td>1991-11-20</td>
+        <td>+1 613-145-1342</td>
+        <td>elena@gmail.com</td>
+    </tr>
+    <tr>
+        <td>8</td>
+        <td>Stefan</td>
+        <td>Salvatore</td>
+        <td>1996-08-23</td>
+        <td>+1 613-788-9090</td>
+        <td>stefen@gmail.com</td>
+    </tr>
+    <tr>
+        <td>9</td>
+        <td>Damon </td>
+        <td>Salvatore</td>
+        <td>1998-10-29</td>
+        <td>+1 613-768-0009</td>
+        <td>damone@live.com</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+<h3 id="2c">2c. The Relationships of Tables</h3>
+<img src="relationship.jpeg" alt="" height="auto" width="100%">
+
+<h3 id="2d">2d. Queries</h3>
+<p>
+    <b>1. A query that applies a row and column selection to a single table</b>
+    <br>
+    What is the country of origin for FIAT brand?
+    <br>
+    <span class="codefont">
+        select country_of_origin From brand where name = 'FIAT';
+    </span>
+    <br>
+    Result:    
+    <br>
+    <img src="q1.jpg" alt="">
+</p>
+
+<p>
+    <b>2. A query that takes join of two tables and does row and column selection and ordering.</b>
+    <br>
+    Find name of all models of RENAULT brand order by English alphabets.
+    <br>
+    <span class="codefont">
+        select model.name From model join brand on model.brand_id = brand.id where brand.name='RENAULT' order by model.name;
+    </span>
+    <br>
+    Result: 
+    <br>
+    <img src="q2.jpg" alt="">
+</p>
+
+<p>
+    <b>3. A query like the previous one but this time it should take join of three tables.</b>
+    <br>
+    Find chasis_number, model name and color of all the cars sold for any model of RENAULT order by model names.    
+    <br>
+    <span class="codefont">
+        select chasis_number, model.name, color From model join brand join car on model.brand_id = brand.id and car.model_id = model.id where brand.name='RENAULT' order by model.name;    
+    </span>
+    <br>
+    Result: 
+    <br>
+    <img src="q3.jpg" alt="">
+</p>
+
+<p>
+    <b>4. Write a query involving outer join and row selection.</b>
+    <br>
+    Find details of cars sold by each employee. Make sure to include those employee who didn’t sell even one car.  
+    <br>
+    <span class="codefont">
+        select * From Employee left outer join car on car.employee_id = employee.id;
+
+    </span>
+    <br>
+    Result: 
+    <br>
+    <img src="q4.jpg" alt="">
+</p>
+
+
+<p>
+    <b>5. Write two queries involving summary functions, row selection, and join operations.</b>
+    <br>
+        How many different types of models are produced by RENAULT?    
+    <br>
+    <span class="codefont">
+        select count(*) From model join brand on model.brand_id = brand.id where brand.name='RENAULT' order by model.name; 
+    </span>
+    <br>
+    Result:
+    <br>
+    <img src="q5.jpg" alt="">
+    <br>
+    Find total sale done by employee 'NURAN'
+    <span class="codefont">
+        select sum(price) From Employee join car on car.employee_id = employee.id where employee.first_name='NURAN';
+    </span>
+    <br>
+    Result: 
+    <br>
+    <img src="q5b.jpg" alt="">
+</p>
+
+<p>
+    <b>6. Write two queries involving grouping, row selection, and ordering</b>
+    <br>
+    How many different types of models are produced by each brand except FIAT.    
+    <br>
+    <span class="codefont">
+        select brand.name, count(*) From model join brand on model.brand_id = brand.id where brand.name!='FIAT' group by Brand.name order by model.name;
+    </span>
+    <br>
+    Result: 
+    <br>
+    <img src="q6.jpg" alt="">
+    <br>
+    Find total sale done by each employee except Andrea
+    <br>
+    <span class="codefont">
+        select employee.first_name, employee.last_name, sum(price) From Employee  join car on car.employee_id = employee.id where employee.first_name!='Andrea' group by  employee.id;
+    </span>
+    <br>
+    Result: 
+    <br> 
+    <img src="q6b.jpg" alt="">
+</p>
+
+<p>
+    <b>7. Write a query involving grouping and group selection</b>
+    <br>
+    Find total sale done by each employee who sold cars for total of more than 90000   
+     <br>
+     <span class="codefont">
+        select employee.first_name, employee.last_name, sum(price) as sale From Employee  join car on car.employee_id = 
+        employee.id group by  employee.id having sale>90000;     
+    </span>
+     <br>
+     Result: 
+    <br>
+    <img src="q7.jpg" alt="">
+</p>
+
+<p>
+    <b>8. Write a query involving grouping, group selection, and row selection.</b>
+    <br>
+    Find total sale done by each employee who sold cars for total of more than 85000 except employee ‘NURAN’    
+    <br>
+    <span class="codefont">
+        select employee.first_name, employee.last_name, sum(price) as sale From Employee  join car on car.employee_id = employee.id where employee.first_name!='NURAN' group by  employee.id having sale>85000;
+    </span>
+    <br>    
+    Result: 
+    <br>
+    <img src="q8.jpg" alt="">
+</p>
+
+
+
+
+
+</body>
+</html>
