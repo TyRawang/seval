@@ -60,7 +60,7 @@ table {
 }
   
 tr:nth-child(even) {
-    background-color: #dddddd;
+    background-color: rgb(197, 230, 241);
 }
 
 td, th {

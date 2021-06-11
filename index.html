@@ -46,7 +46,7 @@ Here are few scenarios which can show the effectiveness of having the RDB.
 
 <div class="two-col">
     <div>
-        <h4>Brand</h4>
+        <h4>brand</h4>
         <table>
             <tr>
             <th>id</th>
@@ -509,6 +509,7 @@ Here are few scenarios which can show the effectiveness of having the RDB.
     <img src="q5.jpg" alt="">
     <br>
     Find total sale done by employee 'NURAN'
+    <br>
     <span class="codefont">
         select sum(price) From Employee join car on car.employee_id = employee.id where employee.first_name='NURAN';
     </span>
